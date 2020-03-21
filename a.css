@@ -1,0 +1,366 @@
+    
+
+
+/* clearfix让float的內容回归文档流 
+   inline-block:让块元素变成内联元素（变成同行） 
+*/
+
+.card{
+    color:white;
+}
+h1{
+    text-align:center;
+    color:black ;
+}
+body{
+    background-color: #efefef;
+    
+    margin: 0;
+}
+* {
+    padding:0px;
+    margin: 0px;
+}
+/*所有元素都不要外内边距，方便调整 */
+
+hr{
+    height:1px;
+    color:#dedede;
+}
+
+.topNavBar{
+    background-color: ;
+    padding:20 0 20 0;
+    position:fixed;
+    /* 脱离文档流 */
+    top:0;
+    left:0;
+    width:100%;
+    /* 千万少用，容易出bug
+       靠＋多一层div解决 */
+
+}
+.topNavBar-inner{
+    padding:0 16 0 16;
+}
+.topNavBar nav{
+    border-top:2px solid transparent;
+    border-bottom:3px solid transparent;
+}
+a{
+    color:inherit;
+    text-decoration:none; 
+}
+.clearfix::after{
+    content:'';
+    display:block;
+    clear:both;
+    
+}
+
+.topNavBar nav>ul{ 
+    list-style: none;
+    margin: 0; 
+    padding:0; 
+    
+}
+.topNavBar nav>ul>li{
+    float:left;
+    margin-left:17;
+    margin-right:17; 
+    /*边距给到li而不是a（经验） */
+      
+} 
+.topNavBar nav>ul>li>a{
+    font-size:12;
+    color:#c2c1c2;
+    text-decoration:none;
+    font-weight: bold;
+    border-top  :3px solid transparent;
+    border-bottom:3px solid transparent;
+    padding-top:5;
+    padding-bottom:5;
+    display:block;
+    /*解决<a>和<li>长宽不同的问题 */
+
+}
+
+.topNavBar nav>ul>li>a:hover{
+   border-bottom:3px solid #e8676b;
+
+}
+
+.topNavBar .logo{
+    /* 这边可能是类选择器的问题 */
+    font-size: 24px ;
+    font-family: "arial black";
+    border-top:3px;
+    border-bottom:3px;
+}
+
+.topNavBar .logo .rs{
+    /* 这边可能是类选择器的问题 */
+    margin-right:3px;
+    color:#e8676b;
+    
+}
+.banner{
+    height:515px ;
+    /*非必要不要使用，bug多 */ 
+    background-image: url(./img/kobe.jpg);
+    border:1px solid green;
+    background-position: center center;
+    background-size: cover; /*背景大小自动调节*/
+}
+.banner .mask{
+    height:550px;
+    /* 不要写高度，自适应的 */
+    background-color:rgb(0, 0,0, 0.6);
+}
+ main{
+    margin-top:-350px
+}
+.hostCard{
+    
+    max-width:940px; /* 最大寬度有自適應功能。*/
+    margin-left:auto;
+    margin-right:auto ;/*套路：左右auto，让图片居中*/
+    background-color: white;
+    box-shadow: 0px 0px 6px 2px rgba(120,114,120,1); 
+}
+.hello{   
+    color:white;
+    background:#e8676b;
+/*span不接受设置宽高，内联元素不接受，使用display:inline-block      *ck
+   
+    display:inline-block;
+    
+    /*老师不用新手作法，他是『从外向内做』，使用padding。
+       优点：即使加了字，也会自适应
+       写固定宽度的话，加字，字就不见了
+       少设定width和height
+             */
+    padding:4px 13.5px;
+    position: relative;
+    margin-bottom: 10px;   
+}
+.triangle{
+    border:10px solid transparent;
+    width:0px;
+    height:0px;
+    border-left-color:#e8676b;
+    border-top-width:0px; 
+    
+    display:block;/*把span變成div*/
+    position: absolute;
+    left:4px;
+    top:100%; /*套路：距离上方100%*/   
+}
+
+.profile{
+    float:left; 
+    margin-left:60px;
+    width:470px;
+}
+.photo{
+    float: left;
+    margin-bottom: 10px ;
+}
+.photoAndText{
+    /*由于在主div加padding会导致div变胖，所以用多馀的div调整*/
+    padding:30px;
+}
+.text{
+    width:470px; 
+}
+.text h1{
+     margin-top:18px;
+}
+.a1{
+    padding-left:120px;
+}
+.text hr{
+    margin: 20px 0px;
+}
+.profile dt,  
+.profile dd{
+    float:left;
+    padding:5px 0px;/*！！！搞不懂margin和padding各自的使用实机*/
+}
+
+/* 套路：definition list的dt 和 dd的水平分配 */
+.profile dt{
+    width:20%;
+    color:black;
+    font-weight: bold;
+}
+.profile dd{
+    width:80%;
+    color:grey;
+}
+
+.hostCard footer.socialMedia{
+    background-color:#e8676b;
+    /* 块级元素（不确定）居中 */
+    text-align: center;
+}
+.hostCard footer.socialMedia a{
+    display: inline-block;
+    
+    /* border-radius:50%; */
+   padding:2px;
+   width:40px;
+   border-radius: 50%;
+   margin: 16px 16px;
+     
+}
+.hostCard footer.socialMedia a:hover{
+    background: #d15d61;
+}
+
+.hostCard footer svg{
+    width: 30px;
+    height: 30px;
+    fill:white; 
+    margin:5px 0px;
+      /*用来处理垂直居中，原理不知，先记住！！  */
+    vertical-align: top;
+}
+
+
+body>main a.download{  
+    /*内联元素的padding上下是没用的，是由line_height决定，要先变成inline-block
+      达成居中，外面要包一个块元素
+    */
+    font-size: 14px;
+    border:1px solid red;
+    display:inline-block;
+    padding:15px 35px;
+    font-weight: bold;
+    border:1px solid #cdcdde;
+    background:#efefef;
+    border-radius: 2px;
+    color:#3d4451;
+    margin:32px 0;   
+}
+body>main a.download:hover{
+    box-shadow: 3px 3px 6px 1px rgba(120,114,120,1);
+    /* 加上时间让他自然过度 */
+    transition:0.2s;
+
+}
+body>main .downloadWrapper{
+    text-align: center;   
+}
+
+body p.selfIntroduction{
+    max-width: 940px;
+    margin-right: auto;
+    margin-left:auto;
+    text-align: center; 
+    font-size: 100%;
+}
+.portfolio{
+    max-width: 940px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+    text-align:center;
+
+    
+}
+.portfolio>nav{
+    text-align: center;
+
+    /* 使用inline-block，让nav不再跟父类一样宽，改成宽度自适应
+       原理：因为块级元素会占著一整行，让它变成内联元素    
+    */
+    display:inline-block;
+    vertical-align: top;
+}
+.portfolio>h2{
+    margin-left:auto;
+    margin-right: auto;
+    text-align: center;
+    color:#3d4451;
+    font: size 34px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+.portfolio ol{
+    
+    list-style: none;
+    
+    /* ！！让元素自动收缩，会出现两个bug
+    1.底部冒出一点空间-->vertical-align: top;
+    
+    */
+    display:inline-block;/*变成内联元素，内联元素居中使用text-align:center*/
+    vertical-align: top;
+    margin: 20px 0px;  
+       
+}
+
+.portfolio ol>li{
+    float: left;
+    margin-left:40px;
+    cursor: pointer; /*鼠标变手形*/
+}
+.portfolio ol>li:nth-child(1){
+    margin-left: 0;
+}
+
+.portfolio .bar{
+    
+    height:15px;
+    background: white;
+    border-radius: 5px;
+    margin-bottom:60px;
+}
+.portfolio .bar .bar-inner{
+    height:100%;
+    
+    background:#e6686a ;
+    border-radius: 5px;    
+    /* 用来调整位置，它的大小不能超过它爸爸 */
+    margin-left:140px; 
+    /* 制造动画感 */
+    transition: all 1s;
+
+
+}
+.portfolio .bar.state-1 .bar-inner{
+    margin-left:0px;
+    width:40px;
+}
+.portfolio .bar.state-2 .bar-inner{
+    margin-left:80px;
+    width:40px;
+}.portfolio .bar.state-3 .bar-inner{
+    margin-left:160px;
+    width:130px;
+}
+ 
+     
+ .works .big,
+ .works .small{
+     position: absolute;
+     /* 绝对定位的元素不在文档流里> 文档流里没有东西，父级边框塌陷 */
+ }
+ .works{
+   /* 父类絕對定位，子類才能绝对定位 */
+   position: relative;
+  
+   margin-bottom: 100px;
+   
+ }
+ .works .big{
+     top:0; left:0
+ }
+
+ section .portfolio{
+     margin-bottom: 100px;
+     border:1px solid red;
+ }
+
+
